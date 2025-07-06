@@ -1,0 +1,27 @@
+name: Greet User
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+
+    env:
+      PYTHON_VERSION: '3.11'  # ✅ You can change this to any 3.x version
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Run greeting script
+        run: |
+          echo "Running script.py with input 'John Doe'"
+          python script.py "John Doe"
